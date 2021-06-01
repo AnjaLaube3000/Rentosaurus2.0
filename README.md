@@ -1,2 +1,2 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
-# Rentosaurus2.0
+Rentosaurus is the platform to book dinosaurs from around the world for your special occasion. Just create an account and find the the right one for your event. Kids birthdays, reunions, anniversaries or the holiday party in your company.
+We are transparent. No extra fees. 
