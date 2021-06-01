@@ -1,0 +1,82 @@
+<div class="account d-flex flex-row justify-content-around">
+
+  <div class="profile">
+    <div class="container-avatar">
+      <div class="profile-box d-flex flex-column">
+        <div class="profile-info flex-item">
+          <div>
+            <%= cl_image_tag @user.photo, height: 300, width: 300, crop: :fill, class: "avatar-account"%>
+          </div>
+
+          <p> <%= simple_form_for @user, url: account_path(@user), html: {method: :post} do |f|%>
+            <%= f.input :photo, label: false %>
+            <%= f.input :photo_cache, as: :hidden %>
+            <%= f.button :submit, "Update photo" %>
+            <% end %>
+          </p>
+        </div>
+
+        <div class="profile-description flex-item">
+          <p> Username: <%= current_user.name %> </p>
+          <p> Email: <%= current_user.email %> </p>
+          <p> <%= link_to "Edit profile", edit_user_registration_path  %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="user">
+    <div class="user-activity">
+      <h1 class="user-greet">Hi, I am <%= current_user.name %>! </h1>
+
+      <div class="user-dino">
+        <h4><strong>My Dinosaurus</strong></h4>
+
+        <div class="user-dino-detail justify-content-around">
+         <% @dinosaurs.each do |d| %>
+         <% if d.user_id == current_user.id %>
+         <div class="user-dino-card">
+           <%= link_to dinosaur_path(d), :action => 'go' do %>
+           <div><%= cl_image_tag d.photo, height: 200, width: 200, class: "dino-pp" %></div>
+           <h5 class="mb-1 mt-2"><%= link_to d.name.capitalize, dinosaur_path(d.id) %></h5>
+           <p class="mb-3 pb-4"><%=  d.location.capitalize %></p>
+         </div>
+         <% end %>
+         <% end%>
+         <% end%>
+       </div>
+
+     </div>
+
+     <div class="user-booking d-flex flex-column">
+      <h4><strong>My Bookings</strong></h4>
+      <% @bookings.each do |booking| %>
+      <div class="actions d-flex flex-row mb-2">
+        <%= link_to dinosaur_path(booking.dinosaur), :action => 'go' do %>
+
+        <div><%= cl_image_tag booking.dinosaur.photo, height: 200, width: 200, class: "dino-pp" %></div>
+
+        <div class="d-flex flex-column ml-3 mb-5">
+          <h5 class="mb-1 pb-4"><%= booking.dinosaur.name %></h5>
+          <% end %>
+          <p class="mb-3">Start at: <%= booking.time_start %></p>
+          <p class="mb-3 pb-3">End at: <%= booking.time_end %></p>
+        <div>
+          <%= link_to "Update", edit_booking_path(booking), class: "pr-4" %>
+          <%= link_to "🗑", booking_path(booking), method: :delete %>
+        </div>
+
+
+
+      </div>
+
+      </div>
+
+
+    </div>
+    <% end %>
+  </div>
+
+</div>
+</div>
+

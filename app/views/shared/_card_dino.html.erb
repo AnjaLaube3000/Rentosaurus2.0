@@ -1,0 +1,20 @@
+<div class="card-product border-secondary" >
+  <div class="card-product-infos width-80">
+    <%= link_to dinosaur_path(dino.id), class:"text-decoration-none" do %>
+    <h2><%= dino.name %></h2>
+    <h6><%= dino.location %></h6>
+    <p>€ <%= dino.price %></p>
+    <div class="ml-auto">
+      <% if policy(dino).destroy? %>
+        <%= link_to "🗑", dinosaur_path(dino.id), method: :delete %>
+      <% end %>
+    </div>
+  </div>
+  <!-- <img class=" ml-auto" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
+  <!-- ,class="ml-auto"  -->
+  <% end %>
+  <div class="image-holder" style="background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.0)), url('<%= cl_image_path dino.photo, height: 300, width: 400, crop: :fill %>')">
+  </div>
+</div>
+
+
